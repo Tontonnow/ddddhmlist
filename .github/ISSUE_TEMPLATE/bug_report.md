@@ -1,38 +1,42 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name:
+about: 问题反馈
 title: ''
 labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**描述问题**
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+请简单明了的描述问题,最好能提供复现步骤
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**复现问题**
+1. 你干了什么
+2. 发生了什么
+3. 发生频率
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**你想要的结果**
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+对您期望发生的情况的清晰简洁的描述。
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**截图或日志**
+如果适用，请添加屏幕截图或日志以帮助解释您的问题。
 
-**Additional context**
-Add any other context about the problem here.
+**环境信息**
+- 操作系统: [例如 Windows]
+- 版本: [例如 win10 1903]
+- 软件版本: [例如 1.0.0]
+- 其他信息
+
+**自我检查**
+- [ ] 是否会编程
+- [ ] 是否会搜索
+- [ ] 我已经搜索了已有的问题
+- [ ] 我已经查看了文档
+- [ ] 我觉得自行解决不了
+- [ ] 我觉得别人能帮我解决
+- [ ] 我会耐心等待
+- [ ] 我会心怀感激
+
+
