@@ -296,3 +296,7 @@ go run ./cmd/server
 
 * [提交issue](https://github.com/Tontonnow/ddddhmlist/issues/new)
 * 提问前请先阅读[提问的智慧](https://lug.ustc.edu.cn/wiki/doc/smart-questions/),无效问题会被忽略
+
+## License
+
+[MIT](LICENSE.txt) © [Tontonnow](https://github.com/Tontonnow/ddddhmlist/blob/master/LICENSE.txt)
