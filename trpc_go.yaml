@@ -1,0 +1,78 @@
+global:  # Global configuration.
+  namespace: Development  # Environment type, either Production or Development.
+  env_name: test  # Environment name for non-production environments.
+
+server:  # Server configuration.
+  app: DDDDhm  # Application name for the business.
+  server: DdddList  # Process server name.
+  multiplexed:
+    enable_metrics: true
+  filter:  # List of interceptors for all service handler functions.
+    - ddddFilter
+    - SimpleLogFunc
+    - recovery  # Intercept panics from business processing goroutines created by the framework.
+    - validation
+  service:  # Services provided by the business, can have multiple.
+    - name: DDDDhm.DdddListService  # Route name for the service.
+      ip: 127.0.0.1  # Service listening IP address, can use placeholder ${ip}. Use either ip or nic, ip takes priority.
+      # nic: eth0
+      port: 8002  # Service listening port, can use placeholder ${port}.
+      network: tcp  # Network listening type: tcp or udp.
+      protocol: trpc  # Application layer protocol: trpc or http.
+      timeout: 1000  # Maximum processing time for requests in milliseconds.
+    - name: DDDDhm.DdddListServiceHTTP  # Route name for the service.
+      ip: 127.0.0.1  # Service listening IP address, can use placeholder ${ip}. Use either ip or nic, ip takes priority.
+      # nic: eth0
+      port: 8001  # Service listening port, can use placeholder ${port}.
+      network: tcp  # Network listening type: tcp or udp.
+      protocol: http  # Application layer protocol: trpc or http.
+      timeout: 1000  # Maximum processing time for requests in milliseconds.
+
+
+
+client:  # Backend configuration for client calls.
+  timeout: 1000  # Maximum processing time for all backends.
+  namespace: Development  # Environment for all backends.
+  filter:  # List of interceptors for all backend function calls.
+    - validation
+  service:  # Configuration for individual backends.
+    - name: DDDDhm.DdddListService  # Service name for the backend.
+      namespace: Development  # Environment for the backend.
+      network: tcp  # Network type for the backend: tcp or udp (configuration takes priority).
+      protocol: trpc
+      target: ip://127.0.0.1:8002
+      timeout: 1000
+plugins:
+  log:
+    default:
+      - writer: console
+        level: debug
+        formatter: console
+        formatter_config:
+          time_fmt: 2006-01-02 15:04:05
+          time_key: Time
+          level_key: Level
+          name_key: Name
+          caller_key: Caller
+          message_key: Message
+          stacktrace_key: StackTrace
+      - writer: file
+        level: info
+        formatter: json
+        formatter_config:
+          time_fmt: 2006-01-02 15:04:05
+          time_key: Time
+          level_key: Level
+          name_key: Name
+          caller_key: Caller
+          message_key: Message
+          stacktrace_key: StackTrace
+        writer_config:
+          log_path: ./tmp/log/
+          filename: ddddlist.log
+          write_mode: 2
+          roll_type: time
+          max_age: 7
+          max_backups: 10
+          compress: false
+          max_size: 10

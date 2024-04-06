@@ -1,0 +1,16 @@
+module Cctv
+{
+    struct VideoDetailsRequest
+    {
+        0 optional string              lid;
+        1 optional string              cid;
+        2 optional string              vid;
+        3 optional string              historyVid;
+        4 optional map<string, string> expansionMap;
+        5 optional string              sessionId;
+        6 optional string              refreshContext;
+        7 optional string              pageContext;
+        8 optional string              serverFrom;
+        9 optional string              dataKey;
+    };
+};

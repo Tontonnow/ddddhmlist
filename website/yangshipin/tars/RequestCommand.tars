@@ -1,0 +1,102 @@
+module Cctv
+{
+    struct BucketConfig
+    {
+        0 require  int    bucketId;
+        1 optional string extra;
+    };
+    struct ExtentData
+    {
+        0 optional int          checkFlag;
+        1 require  byte         flagByte;
+        2 optional string       extra;
+        3 optional BucketConfig bucketInfo;
+    };
+    struct Coordinates
+    {
+        0 optional int    type;
+        1 optional float  latitude;
+        2 optional float  longitude;
+        3 optional double accuracy;
+    };
+    struct QUA
+    {
+        0  require  string      versionName;
+        1  require  string      versionCode;
+        2  optional int         screenWidth;
+        3  optional int         screenHeight;
+        4  optional int         platform;
+        5  optional string      platformVersion;
+        6  optional int         markerId;
+        7  optional int         networkMode;
+        8  optional int         densityDpi;
+        9  optional string      channelId;
+        10 optional string      imei;
+        11 optional string      imsi;
+        12 optional string      idfa;
+        13 optional string      omgId;
+        14 optional string      extent;
+        15 optional ExtentData  extentData;
+        16 optional string      clientKey;
+        17 optional string      mac;
+        18 optional string      serverid;
+        19 optional Coordinates coordinates;
+        20 optional string      deviceId;
+        21 optional string      deviceModel;
+        22 optional int         deviceType;
+        23 optional int         mobileISP;
+        24 optional int         areaMode;
+        25 optional int         countryCode;
+        26 optional int         langCode;
+        27 optional string      appSubVersion;
+    };
+    struct LoginToken
+    {
+        0 require  string       TokenAppID;
+        1 require  byte         TokenKeyType;
+        2 require  vector<byte> TokenValue;
+        3 optional string       TokenUin;
+        4 optional bool         IsMainLogin;
+    };
+    struct ExtentAccount
+    {
+        0 require int    type;
+        1 require string accountId;
+    };
+    struct SafeInfo
+    {
+        0 optional int          type;
+        1 optional string       SafeKey;
+        2 optional vector<byte> SafeResult;
+    };
+    struct BusinessExtent
+    {
+        0 optional int launchType;
+    };
+    struct RequestHead
+    {
+        0  require  int                   requestId;
+        1  require  int                   cmdId;
+        2  optional QUA                   qua;
+        3  optional string                appId;
+        4  optional string                guid;
+        5  optional vector<LoginToken>    token;
+        7  optional vector<ExtentAccount> extentAccountList;
+        8  optional int                   oemPlatform;
+        9  optional int                   isSupportDolby;
+        10 optional int                   contentType;
+        11 optional SafeInfo              safeInfo;
+        12 optional BusinessExtent        busiExtent;
+    };
+    struct BusinessHead
+    {
+        0 require  int          type;
+        1 optional vector<byte> head;
+    };
+    struct RequestCommand
+    {
+        0 require  RequestHead  head;
+        1 optional vector<byte> body;
+        2 optional BusinessHead businessHead;
+    };
+};

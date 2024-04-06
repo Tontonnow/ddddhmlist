@@ -1,0 +1,11 @@
+GET http://127.0.0.1:8001/api/v1/ddddlist?url=https://v.youku.com/v_show/id_XNTk1MjQxNjQzMg==.html HTTP/1.1
+Content-Type: application/json
+
+
+###
+POST http://127.0.0.1:8001/api/v1/ddddlist
+Content-Type: application/json
+
+{
+    "url": "https://v.youku.com/v_show/id_XNTk1MjQxNjQzMg==.html"
+}

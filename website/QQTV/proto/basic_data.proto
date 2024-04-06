@@ -1,0 +1,315 @@
+syntax = "proto3";
+package QQTV;
+option go_package = "../../QQTV";
+message ShareItem {
+    optional string share_url = 1;
+    optional string share_title = 2;
+    optional string share_subtitle = 3;
+    optional string share_img_url = 4;
+    optional string vid = 5;
+    optional string cid = 6;
+    optional string share_vertical_img_url = 7;
+}
+message ReportData {
+    optional string report_key = 1;
+    optional string report_params = 2;
+}
+message Action {
+    optional string url = 1;
+    optional ReportData report_data = 2;
+}
+message MarkLabel {
+    optional string text = 1;
+    optional MarkLabelPosition position = 2;
+    optional string feature_color = 3;
+}
+message TagLabel {
+    optional string text = 1;
+    optional string text_color = 2;
+    optional string bg_color = 3;
+    repeated FilterChoiceEntry filter_choice = 4;
+    message FilterChoiceEntry {
+        optional string key = 1;
+        optional string value = 2;
+}
+}
+message Poster {
+    optional string main_title = 1;
+    optional string subtitle = 2;
+    optional string description = 3;
+    optional string img_url = 4;
+    repeated MarkLabel mark_label_list = 5;
+    optional ReportData report_data = 6;
+    optional Action action = 7;
+    optional string ad_key = 8;
+    optional string poster_id = 9;
+    optional int32 episode_updated_country = 10;
+    repeated TagLabel tag_label_list = 11;
+    optional string cid = 12;
+    optional string pid = 13;
+    optional string vid = 14;
+    optional string img_main_color = 15;
+    optional string tid = 16;
+    repeated ActorInfo actor_list = 17;
+    optional string tid_type = 18;
+    optional string url = 19;
+    optional string url_outer = 20;
+    optional int32 expose_limit = 21;
+    optional string bg_img_url = 22;
+    optional string logo_img_url = 23;
+    optional bool title_hide = 24;
+    optional string nid = 25;
+}
+message Definition {
+    optional string value = 1;
+    optional string short_name = 2;
+    optional string long_name = 3;
+    optional bool requires_vip = 4;
+}
+message VideoItemData {
+    optional string vid = 1;
+    optional VideoPaymentType payment_type = 2;
+    optional Poster poster = 3;
+    optional int32 skip_start = 4;
+    optional int32 skip_end = 5;
+    optional Action action = 6;
+    optional string title = 7;
+    optional VideoCopyrightType play_copyright_type = 8;
+    optional Poster watch_record_poster = 9;
+    optional ShareItem share_data = 10;
+    optional string next_play_key = 11;
+    optional int32 try_watch_duration = 12;
+    optional string cid = 13;
+    optional bool pay_preview = 14;
+    optional float stream_ratio = 15;
+    optional bool not_record_history = 16;
+    optional bool disable_external_play = 17;
+    optional int32 episode_id = 18;
+    optional bool is_drm = 19;
+    optional int64 publish_time = 20;
+    optional int64 play_count = 21;
+    optional int64 duration = 22;
+    optional int32 vid_type = 23;
+    optional int32 status = 24;
+    optional int32 auto_play_type = 25;
+    optional int32 age_limit = 26;
+    optional string episode_id_text = 27;
+}
+message UserInfo {
+    optional string vuid = 1;
+    optional string nick = 2;
+    optional string avatar = 3;
+    optional uint64 like_count = 4;
+    optional uint64 video_count = 5;
+    optional uint64 follower_count = 6;
+    optional int32 follow_state = 7;
+    optional int32 gender = 8;
+    optional string birthday = 9;
+    optional string introduction = 10;
+    optional string email = 11;
+}
+message ShortVideoPoster {
+    optional string vid = 1;
+    optional string cid = 2;
+    optional Poster poster = 3;
+    optional Action action = 4;
+    optional UserInfo user_info = 5;
+    optional ShareItem share_item = 6;
+    optional uint64 play_count = 7;
+    optional int32 duration = 8;
+    optional bool is_open = 9;
+    optional bool is_watched = 10;
+}
+message ABTestConf {
+    optional string test_id = 1;
+    repeated MapParamEntry map_param = 2;
+    message MapParamEntry {
+        optional string key = 1;
+        optional string value = 2;
+}
+}
+message ABTestList {
+    optional string report_ids = 1;
+    repeated ABTestConf test_list = 2;
+}
+message PlayCalender {
+    optional string url = 1;
+    optional string img_url = 2;
+}
+message CPInfo {
+    optional int64 vuid = 1;
+    optional string nick = 2;
+    optional string avatar = 3;
+    optional int32 likecount = 4;
+    optional int32 videocount = 5;
+    optional int32 followercount = 6;
+    optional int32 followstate = 7;
+    optional Gender gender = 8;
+    optional string birthday = 9;
+    optional string introduction = 10;
+    optional string email = 11;
+}
+message ExperimentInfo {
+    optional string experiment_id = 1;
+}
+message RankInfo {
+    optional int32 rank = 1;
+    optional float score = 2;
+    optional string introduction = 3;
+    optional string category = 4;
+}
+message RankPoster {
+    optional Poster poster = 1;
+    optional RankInfo rank_info = 2;
+}
+message SubInfo {
+    optional string subtitle = 1;
+    optional VideoOption video_option = 2;
+    optional LikeInfo like_info = 3;
+}
+message VideoOption {
+    optional int64 watched_number = 1;
+    optional int64 danmu_number = 2;
+    optional int64 duration = 3;
+    optional int64 create_time = 4;
+    optional int64 like_number = 5;
+}
+message VoteInfo {
+    optional int64 support_count = 1;
+    optional string actor_id = 2;
+    optional string group_id = 3;
+    optional Action action = 4;
+    optional string button_content = 5;
+}
+message ActorInfo {
+    optional string actor_name = 1;
+    optional string actor_id = 2;
+    optional string face_image_url = 3;
+    optional Action action = 4;
+    optional VoteInfo vote_info = 5;
+}
+message ActorList {
+    optional string title = 1;
+    repeated ActorInfo actor_info_list = 2;
+    optional string page_context = 3;
+}
+message SeasonInfo {
+    optional string title = 1;
+    optional string cid = 2;
+    optional NextPageInfo next_page_info = 3;
+    optional PlayCalender play_calender = 4;
+    optional PlayListUiType play_list_ui_type = 5;
+    optional string detail_info = 6;
+}
+message VideoDetailBasicInfo {
+    optional string vid = 1;
+    optional string cid = 2;
+    optional int32 video_type = 3;
+    optional int32 primary_category = 4;
+    optional int32 area_id = 5;
+    repeated SeasonInfo season_list = 6;
+    optional VideoItemData current_video_data = 7;
+    optional int32 full_episode_count = 8;
+    optional int32 update_episode = 9;
+    optional int64 update_time = 10;
+    optional int64 online_time = 11;
+}
+message ToolbarItemInfo {
+    optional bool is_show = 1;
+    optional bool enable = 2;
+}
+message WatchList {
+    optional bool is_show = 1;
+    optional bool is_watched = 2;
+}
+message LikeInfo {
+    optional string data_key = 1;
+    optional int32 like_count = 2;
+    optional int32 like_type = 3;
+    optional string report_key = 4;
+    optional string report_params = 5;
+}
+message NextPageInfo {
+    optional string data_key = 1;
+    optional string page_context = 2;
+    optional bool has_next_page = 3;
+}
+message ColdTagItem {
+    optional string id = 1;
+    optional string name = 2;
+    optional string image_url = 3;
+}
+message AlbumData {
+    optional string cid = 1;
+    optional string title = 2;
+    optional string pic_url_vertical = 3;
+    optional string pic_url_horizental = 4;
+    optional string desc = 5;
+    optional int32 update_to = 6;
+    repeated ActorInfo actor_list = 7;
+    repeated TagLabel tag_label_list = 8;
+    optional int64 online_time = 9;
+}
+message StateInfo {
+    optional bool reserved = 1;
+    optional bool collected = 2;
+}
+message AlbumDataInfo {
+    optional AlbumData album_data = 1;
+    optional StateInfo state_info = 2;
+    optional ReportData reportdata = 3;
+}
+message ButtonMore {
+    optional bool is_show = 1;
+    optional Action action = 2;
+}
+enum MarkLabelPosition {
+    LOWER_LEFT = 0;
+    LOWER_RIGHT = 1;
+    UPPER_RIGHT = 2;
+    UPPER_LEFT = 3;
+}
+enum IdType {
+    ID_TYPE_CID = 0;
+    ID_TYPE_PID = 1;
+    ID_TYPE_VID = 2;
+}
+enum VideoPaymentType {
+    UNKNOWN = 0;
+    VOD = 4;
+    VOD_VIP_EXMT = 5;
+    VIP_ONLY = 6;
+    FREE_FOR_ALL = 8;
+    SINGLE_PAY = 7;
+    VOD_AHEAD = 12;
+}
+enum VideoCopyrightType {
+    PLAY_IN_WEBVIEW = 0;
+    PLAY_IN_APP = 1;
+    PLAY_IN_WEBVIEW_WITH_STMT = 101;
+}
+enum Gender {
+    GENDER_MALE = 0;
+    GENDER_FEMALE = 1;
+    GENDER_OTHER = 2;
+}
+enum PlayListUiType {
+    PLAY_LSIT_TYPE_TEXT = 0;
+    PLAY_LIST_TYPE_POSTER = 1;
+}
+enum LiveNumberType {
+    TYPE_UNKNOW = 0;
+    TYPE_ONLINE = 1;
+    TYPE_RESERVE = 2;
+}
+enum LoadType {
+    LOAD_TYPE_MANUAL = 0;
+    LOAD_TYPE_TIMEOUT = 1;
+    LOAD_TYPE_PRELOAD = 2;
+    LOAD_TYPE_NEXTPAGE = 3;
+}
+enum SearchPosterType {
+    TYPE_SMALL = 0;
+    TYPE_LARGE = 1;
+    TYPE_POSTER = 2;
+}

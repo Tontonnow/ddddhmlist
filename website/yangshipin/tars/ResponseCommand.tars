@@ -1,0 +1,17 @@
+#include "RequestCommand.tars"
+module Cctv
+{
+    struct ResponseHead
+    {
+        0 require int    requestId;
+        1 require int    cmdId;
+        2 require int    errCode;
+        3 require string sUserid;
+    };
+    struct ResponseCommand
+    {
+        0 require  ResponseHead       head;
+        1 optional vector<byte>       body;
+        2 optional Cctv::BusinessHead businessHead;
+    };
+};

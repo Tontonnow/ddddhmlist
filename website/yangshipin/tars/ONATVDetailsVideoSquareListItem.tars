@@ -1,0 +1,42 @@
+#include "VideoDetailsResponse.tars"
+module Cctv
+{
+    struct NavigationItem
+    {
+        0 require  string title;
+        1 require  string navigationKey;
+        2 optional bool   selected;
+    };
+    struct ShapeInfo
+    {
+        0 require  int    type;
+        1 optional string color;
+    };
+    struct ONARichTitleItem
+    {
+        0  require  TextInfo   leftTitleInfo;
+        1  require  TextInfo   rightTitleInfo;
+        2  optional ShapeInfo  rightShape;
+        3  optional int        height;
+        4  optional string     bgColor;
+        5  optional Action     action;
+        6  optional Impression impression;
+        7  optional string     rightIconUrl;
+        8  optional string     leftIconUrl;
+        9  optional string     mainIconUrl;
+        10 optional string     subBgImageUrl;
+    };
+    struct ONATVDetailsVideoSquareListItem
+    {
+        0 require  string                 dataKey;
+        1 require  vector<VideoData>      videoList;
+        2 optional Paging                 paging;
+        3 optional vector<NavigationItem> navigationItemList;
+        4 optional int                    uiType;
+        5 optional ONARichTitleItem       title;
+        6 optional Impression             impression;
+        7 optional string                 playerTitle;
+        8 optional int                    cardOrientation;
+        9 optional TextInfo               thirdLine;
+    };
+};

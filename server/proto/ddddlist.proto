@@ -1,0 +1,59 @@
+syntax = "proto3";
+package  server;
+option go_package = "../../server";
+import "trpc/proto/trpc_options.proto";
+import "validate/validate.proto";
+service DDDDhm {
+    rpc DdddList (Request) returns (Response) { option(trpc.alias) = "/api/v1/ddddlist"; }
+    rpc  Hello (HelloRequest) returns (HelloResponse) { option(trpc.alias) = "/api/v1/helloworld"; }
+}
+message HelloRequest {
+    string msg = 1;
+}
+
+message HelloResponse {
+    string msg = 1;
+}
+message Request {
+    string url = 1;
+    string country = 2;
+    int32 length = 3;
+    int32 offset = 4;
+}
+message Response {
+    int32 code = 1;
+    string message = 2;
+    Data video= 3;
+}
+message Data {
+    string SeriesId = 1;
+    string SeriesTitle = 2;
+    string descr = 3;
+    repeated Video videoList = 4;
+    bool isVip = 5;
+    string coverHzUrl = 6;
+    string coverVtUrl = 7;
+    string typeName = 8;
+    string categoryName = 9;
+    uint32 vidNum = 10;
+    uint32 updateNum = 11;
+    string status = 12;
+    string createTime = 13;
+    bool IsSeries = 14;
+    map<string, string> extra = 15;
+}
+message Video {
+    string EpisodeTitle = 1;
+    string EpisodeId = 2;
+    string subTitle = 3;
+    string coverUrl = 4;
+    bool isTrailer = 5;
+    bool isVip = 8;
+    uint32 duration = 9;
+    string status = 11;
+    uint32 episode = 12;
+    map<string, string> extra = 13;
+}
+
+
+

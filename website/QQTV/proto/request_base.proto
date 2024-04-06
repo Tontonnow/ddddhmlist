@@ -1,0 +1,145 @@
+syntax = "proto3";
+import "env.proto";
+package QQTV;
+option go_package = "../../QQTV";
+message SafeInfo {
+    int32 type = 1;
+    string safe_key = 2;
+    bytes safe_result = 3;
+}
+
+message LoginToken {
+    string app_id = 1;
+    int32 type = 2;
+    string account = 3;
+    bytes token = 4;
+    bool is_main_login = 5;
+}
+
+message LocationInfo {
+    int32 type = 1;
+    float latitude = 2;
+    float longitude = 3;
+    double accuracy = 4;
+    int32 area_mode = 5;
+    int32 country_code = 6;
+    int32 lang_code = 7;
+}
+
+message NetworkInfo {
+    int32 network_mode = 1;
+    int32 mobile_isp = 2;
+    string ip = 3;
+    string bss_id = 4;
+    string eth_mac = 5;
+    string wifi_mac = 6;
+    string ipv4 = 7;
+    string ipv6 = 8;
+    int32 mcc = 9;
+}
+
+message VersionInfo {
+    string version_name = 1;
+    string version_code = 2;
+    int32 platform = 3;
+    string platform_version = 4;
+    string channel_id = 6;
+    string app_id = 7;
+    int32 vnview_pkg_version = 8;
+}
+
+message PortraitInfo {
+    string key = 1;
+    repeated string value_info = 2;
+}
+
+message DeviceInfo {
+    int32 screen_width = 1;
+    int32 screen_height = 2;
+    int32 density_dpi = 3;
+    string imei = 4;
+    string imsi = 5;
+    string idfa = 6;
+    string omg_id = 7;
+    string device_id = 8;
+    string device_model = 9;
+    int32 device_type = 10;
+    string guid = 11;
+    UISizeType max_uiSize = 12;
+    UISizeType current_window_uiSize = 13;
+    string manufacturer = 14;
+    string qimei = 15;
+    string localIdfa = 16;
+}
+
+message FlagInfo {
+    int32 check_flag = 1;
+    int32 debug_flag = 2;
+    int32 auto_retry_flag = 3;
+    int32 need_retry_flag = 4;
+}
+
+message UserStatusInfo {
+    string session_code = 1;
+    int32 special_user = 2;
+    int64 timestamp = 30;
+    string user_status_key = 3;
+    int32 dye_flag = 4;
+}
+
+message OttInfo {
+    string licence = 1;
+    string qua = 2;
+    string qas = 3;
+}
+
+message RequestHead {
+    int32 request_id = 1;
+    string callee = 2;
+    string func = 3;
+    SafeInfo safe_info = 4;
+    repeated LoginToken login_token = 5;
+    DeviceInfo device_info = 6;
+    VersionInfo version_info = 7;
+    NetworkInfo network_info = 8;
+    LocationInfo location_info = 9;
+    FlagInfo flag_info = 10;
+    BucketInfo bucket_info = 11;
+    repeated PortraitInfo portrait_info = 12;
+    string unique_id = 13;
+    UserStatusInfo user_status_info = 14;
+    map<string, string> extra_request_head = 15;
+    map<string, string> cookie = 16;
+    OttInfo ott_info = 17;
+    EnvInfo env_info = 18;
+}
+
+message ResponseHead {
+    int32 request_id = 1;
+    string callee = 2;
+    string func = 3;
+    int32 err_code = 4;
+    SafeInfo safe_info = 5;
+    FlagInfo flag_info = 6;
+    repeated PortraitInfo portrait_info = 7;
+    UserStatusInfo user_status_info = 8;
+    ServerReportInfo server_report_info = 9;
+}
+
+message ServerReportInfo {
+    int64 server_rsp_time = 1;
+    repeated string discontent_reason = 2;
+}
+
+message BucketInfo {
+    int32 bucket_id = 1;
+    string extra = 2;
+}
+
+enum UISizeType {
+    UISizeType_REGULAR = 0;
+    UISizeType_LARGE = 1;
+    UISizeType_HUGE = 2;
+    UISizeType_MAXIMIZE = 3;
+    UISizeType_XMAXIMIZE = 4;
+}

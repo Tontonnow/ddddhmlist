@@ -1,0 +1,28 @@
+syntax = "proto3";
+package QQTV;
+option go_package = "../../QQTV";
+message Request {
+    int32 version = 1;
+    int32 call_type = 2;
+    int32 request_id = 3;
+    int32 timeout = 4;
+    bytes caller = 5;
+    bytes callee = 6;
+    bytes func = 7;
+    int32 message_type = 8;
+    map<string,bytes> trans_info = 9;
+    int32 content_type = 10;
+    int32 content_encoding = 11;
+}
+message Response {
+    int32 version = 1;
+    int32 call_type = 2;
+    int32 request_id = 3;
+    int32 ret = 4;
+    int32 func_ret = 5;
+    string error_msg = 6;
+    int32 message_type = 7;
+    map<string,bytes> trans_info = 8;
+    int32 content_type = 9;
+    int32 content_encoding = 10;
+}

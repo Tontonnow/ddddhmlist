@@ -1,0 +1,426 @@
+module Cctv
+{
+    struct Paging
+    {
+        0 optional string refreshContext;
+        1 optional string pageContext;
+        2 require  byte   hasNextPage;
+        3 optional string refreshTips;
+        4 optional int    layoutType;
+        5 require  byte   hasPrePage;
+    };
+    struct TemplateItem
+    {
+        0 optional string              adId;
+        1 require  string              groupId;
+        2 require  byte                duplicate;
+        3 require  int                 itemType;
+        4 require  vector<byte>        itemInfo;
+        5 optional map<string, string> dataKeyMap;
+    };
+    struct TextInnerLayoutInfo
+    {
+        0 optional int leftPending;
+        1 optional int topPending;
+        2 optional int rightPending;
+        3 optional int bottomPending;
+    };
+    struct Impression
+    {
+        0 optional string reportEventId;
+        1 optional string reportKey;
+        2 optional string reportParams;
+    };
+    struct TextInfo
+    {
+        0  require  string              text;
+        1  optional string              textSize;
+        2  optional string              textColor;
+        3  optional long                maxLines;
+        4  optional int                 textStyle;
+        5  optional string              bgColor;
+        6  optional string              bgConnor;
+        7  optional TextInnerLayoutInfo innerLayoutInfo;
+        8  optional Impression          impression;
+        9  optional string              fontName;
+        10 optional int                 textShadowSize;
+        11 optional string              textShadowColor;
+        12 optional int                 lineMargin;
+    };
+    struct Action
+    {
+        0 require  string url;
+        1 optional string reportEventId;
+        2 optional string reportKey;
+        3 optional string reportParams;
+    };
+    struct PosterInfo
+    {
+        0 require  string     imageUrl;
+        1 optional TextInfo   firstLine;
+        2 optional TextInfo   secondLine;
+        3 optional TextInfo   thirdLine;
+        4 optional TextInfo   fourthLine;
+        5 optional Action     action;
+        6 optional Impression impression;
+    };
+    struct LayoutInfo
+    {
+        0 optional int leftMargin;
+        1 optional int topMargin;
+        2 optional int rightMargin;
+        3 optional int bottomMargin;
+        4 optional int horizontalGravity;
+        5 optional int verticalGravity;
+    };
+    struct Decor
+    {
+        0 require  byte       type;
+        1 require  byte       position;
+        2 optional TextInfo   primeText;
+        3 optional string     markImageUrl;
+        4 optional LayoutInfo layoutInfo;
+    };
+    struct LiveReservationInfo
+    {
+        0 optional string dataKey;
+        1 optional int    status;
+        2 optional string liveStartTime;
+        3 optional string pid;
+    };
+    struct DecorPoster
+    {
+        0 optional PosterInfo          poster;
+        1 optional vector<Decor>       decorList;
+        2 optional bool                showPosterBottomShadow;
+        3 optional float               bottomShadowHeight;
+        4 optional LiveReservationInfo reservInfo;
+    };
+    struct VideoPlayReportInfo
+    {
+        0 optional Action     action;
+        1 optional Impression impression;
+    };
+    struct ShareItem
+    {
+        0  optional string shareUrl;
+        1  optional string shareTitle;
+        2  optional string shareSubtitle;
+        3  optional string shareImgUrl;
+        4  optional string shareSingleTitle;
+        5  optional string shareContent;
+        6  optional string shareContentTail;
+        7  optional string shareId;
+        8  optional string shareFrom;
+        9  optional bool   canShare;
+        10 optional int    shareType;
+        11 optional string shareCopyContent;
+    };
+    struct NumberFormat
+    {
+        0 optional int    decimalCount;
+        1 optional long   unit;
+        2 optional string suffix;
+    };
+    struct LikeIconInfo
+    {
+        0 optional string iconId;
+        1 optional string scene;
+    };
+    struct LikeItem
+    {
+        0  optional string                    id;
+        1  optional int                       type;
+        2  optional string                    from;
+        3  require  byte                      state;
+        4  optional long                      likeNum;
+        5  optional Impression                impression;
+        6  optional bool                      isShow;
+        7  optional string                    firstValue;
+        8  optional map<string, NumberFormat> formatMap;
+        9  optional int                       showStyle;
+        10 optional LikeIconInfo              likeIconInfo;
+    };
+    struct FavoriteItem
+    {
+        0 optional string recordId;
+        1 optional int    type;
+        2 optional string from;
+    };
+    struct CommentIconInfo
+    {
+        0 require  string                    targetId;
+        1 require  int                       count;
+        2 optional Action                    action;
+        3 optional bool                      isShow;
+        4 optional string                    firstValue;
+        5 optional map<string, NumberFormat> formatMap;
+        6 optional int                       showStyle;
+    };
+    struct ReportItem
+    {
+        0 require  int    report;
+        1 optional string reportId;
+    };
+    struct ActorItem
+    {
+        0 require  string      headUrl;
+        1 optional int         uiType;
+        2 optional int         hasRedHot;
+        3 optional TextInfo    nickName;
+        4 optional Action      action;
+        5 optional TextInfo    introduction;
+        6 optional TextInfo    bottomTextBar;
+        7 optional int         type;
+        8 optional DecorPoster decorPoster;
+        9 optional Impression  impression;
+    };
+    struct FollowInfo
+    {
+        0 require  int      state;
+        1 require  string   dataKey;
+        2 optional TextInfo fansInfo;
+        3 optional int      userType;
+    };
+    struct FollowActorItem
+    {
+        0 require  ActorItem  actorItem;
+        1 optional FollowInfo followInfo;
+        2 optional Impression impression;
+    };
+    struct TopicFeedItem
+    {
+        0 optional TextInfo   content;
+        1 optional Action     action;
+        2 optional Impression impression;
+    };
+    struct TopicPlayerItem
+    {
+        0 optional TextInfo   content;
+        1 optional string     url;
+        2 optional Action     action;
+        3 optional Impression impression;
+    };
+    struct TopicEntryItem
+    {
+        0 optional TopicFeedItem   topicFeedItem;
+        1 optional TopicPlayerItem topicPlayerItem;
+    };
+    struct SimplePoster
+    {
+        0 optional string pic;
+        1 optional string title;
+        2 optional string vid;
+        3 optional string cid;
+        4 optional string isFullScreen;
+    };
+    struct ForwardItem
+    {
+        0 optional bool   isShow;
+        1 optional string forwardType;
+        2 optional string forwardId;
+        3 optional string circleId;
+        4 optional string circleName;
+    };
+    struct VideoPayInfo
+    {
+        0 optional int payStatus;
+        1 optional int tryPlayTime;
+    };
+    struct AdItem
+    {
+        0 optional string id;
+        1 optional string type;
+        2 optional int    source;
+    };
+    struct VideoDetailsLiveInfo
+    {
+        0 require string logoUrl;
+        1 require string actionSchema;
+    };
+    struct VideoDetailMatchInfo
+    {
+        0 optional vector<VideoDetailsLiveInfo> liveInfos;
+        1 optional string                       matchDataUrl;
+        2 optional string                       matchScheduleUrl;
+        3 optional string                       tabId;
+    };
+    struct VideoDetailSubtitleInfo
+    {
+        0 require  string text;
+        1 optional string icon;
+        2 optional string textColor;
+        3 optional Action action;
+    };
+    struct WatchRecordItem
+    {
+        0 optional bool canReport;
+    };
+    struct GameLabelInfo
+    {
+        0 require  string title;
+        1 require  string iconUrl;
+        2 optional Action action;
+    };
+    struct GameTeamInfo
+    {
+        0 require  string   icon;
+        1 require  TextInfo name;
+        2 optional TextInfo score;
+        3 optional Action   action;
+    };
+    struct GameCenterInfo
+    {
+        0 require  TextInfo     matchTitle;
+        1 require  GameTeamInfo firstTeamInfo;
+        2 require  GameTeamInfo secondTeamInfo;
+        3 optional Action       detailAction;
+        4 optional TextInfo     vsInfo;
+    };
+    struct ReservationInfo
+    {
+        0 require  string     dataKey;
+        1 require  int        type;
+        2 require  string     channel;
+        3 optional Impression impression;
+    };
+    struct ButtonInfo
+    {
+        0 require TextInfo button;
+        1 require Action   action;
+    };
+    struct GameRightInfo
+    {
+        0 require  int             status;
+        1 optional ReservationInfo reservationInfo;
+        2 optional string          customButtonTitle;
+        3 optional TextInfo        tipInfo;
+        4 optional ButtonInfo      highlightsButton;
+        5 optional Impression      impression;
+    };
+    struct VideoGameItem
+    {
+        0  require  int                   combat;
+        1  require  vector<GameLabelInfo> labels;
+        2  optional string                gameID;
+        3  optional int                   status;
+        4  require  GameCenterInfo        centerInfo;
+        5  optional GameRightInfo         entranceInfo;
+        6  optional TextInfo              playTimeInfo;
+        7  optional Action                action;
+        8  optional string                bgColor;
+        9  optional Impression            impression;
+        10 optional bool                  canShow;
+    };
+    struct VideoData
+    {
+        0  require  string                          vid;
+        1  require  DecorPoster                     poster;
+        2  optional int                             skipStart;
+        3  optional int                             skipEnd;
+        4  optional Action                          action;
+        5  optional string                          title;
+        6  optional long                            videoType;
+        7  optional string                          parentId;
+        8  optional float                           streamRatio;
+        9  optional VideoPlayReportInfo             playReportInfo;
+        10 optional int                             episodeNum;
+        11 optional string                          navigationKey;
+        12 optional int                             isFullVideo;
+        13 optional int                             shouldStoreHistory;
+        14 optional int                             payStatus;
+        15 optional int                             videoShowFlags;
+        16 optional ShareItem                       shareItem;
+        17 optional int                             likeCount;
+        18 optional int                             collectStatus;
+        19 optional int                             videoFlag;
+        20 optional string                          highBitrateId;
+        21 optional LikeItem                        likeItem;
+        22 optional FavoriteItem                    favoriteItem;
+        23 optional CommentIconInfo                 commentIconInfo;
+        24 optional ReportItem                      reportItem;
+        25 optional string                          subTitle;
+        26 optional int                             is4KVideo;
+        27 optional FollowActorItem                 detailFollowItem;
+        28 optional bool                            detailFollowItemHide;
+        29 optional vector<TopicEntryItem>          topicEntryItemList;
+        30 optional vector<string>                  briefInfo;
+        31 optional string                          portraitBriefInfo;
+        32 optional string                          materialProvider;
+        33 optional string                          pid;
+        34 optional SimplePoster                    om_info;
+        35 optional string                          showTitle;
+        36 optional string                          objectId;
+        37 optional int                             objectType;
+        38 optional ForwardItem                     forwardItem;
+        39 optional VideoPayInfo                    videoPayInfo;
+        40 optional map<string, vector<AdItem>>     type2Ads;
+        41 optional bool                            isQuickView;
+        42 optional bool                            isAdOn;
+        43 optional bool                            isAudioOn;
+        44 optional string                          videoTitle;
+        45 optional string                          audioLimitTimeIcon;
+        46 optional VideoDetailMatchInfo            matchInfo;
+        47 optional string                          audioPosterUrl;
+        48 optional vector<VideoDetailSubtitleInfo> subtitleList;
+        49 optional bool                            vodScreenshotSwitch;
+        50 optional bool                            vodVideoClipSwitch;
+        51 optional WatchRecordItem                 watchRecordItem;
+        52 optional VideoGameItem                   gameItem;
+    };
+    struct DetailTabInfo
+    {
+        0 require  string     tabName;
+        1 optional int        tabType;
+        2 optional string     url;
+        3 optional Impression impression;
+        4 optional string     identifyType;
+    };
+    struct VipPowerItem
+    {
+        0 optional string freeAdToast;
+        1 optional int    accountStatus;
+        2 optional string vipGuideTip;
+        3 optional string definitionPowerToast;
+        4 optional string definitionVipIconUrl;
+        5 optional string vidPowerToast;
+        6 optional bool   isShowBottomToast;
+    };
+    struct VideoDetailsTeamScoreInfo
+    {
+        0 require string teamName;
+        1 require string logoUrl;
+        2 require string rank;
+        3 require string score;
+    };
+    struct VideoDetailsScoreInfo
+    {
+        0 require  VideoDetailsTeamScoreInfo homeScoreInfo;
+        1 require  VideoDetailsTeamScoreInfo awayScoreInfo;
+        2 require  string                    matchId;
+        3 optional string                    tabId;
+        4 optional string                    epgId;
+    };
+    struct VideoDetailsResponse
+    {
+        0  require  int                   errCode;
+        1  require  Paging                paging;
+        2  optional string                errMsg;
+        3  optional string                vid;
+        4  optional string                lid;
+        5  optional string                cid;
+        6  optional string                defaultPlayKey;
+        7  optional vector<string>        sequentPlayKeys;
+        8  optional vector<TemplateItem>  data;
+        9  optional string                pastCoverDataKey;
+        10 require  string                targetId;
+        11 optional VideoData             videoData;
+        12 optional string                dataKey;
+        13 optional bool                  hasRecommendItem;
+        14 optional Impression            impression;
+        15 optional vector<DetailTabInfo> tabList;
+        16 optional int                   tabTemp;
+        17 optional VipPowerItem          vipPowerItem;
+        19 optional VideoDetailsScoreInfo scoreInfo;
+    };
+};

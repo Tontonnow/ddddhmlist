@@ -1,0 +1,466 @@
+syntax = "proto3";
+import "basic_data.proto";
+package QQTV;
+option go_package = "../../QQTV";
+message ChannelFeedItem {
+    optional string type = 1;
+    optional bytes feed_data = 2;
+}
+message FeedPosterTitle {
+    optional string title = 1;
+    optional string subtitle = 2;
+    optional bool right_arrow = 3;
+    optional Action action = 4;
+    optional string detail_info = 5;
+}
+message FeedPosterList {
+    repeated Poster poster_list = 1;
+    optional ButtonMore btn_more = 2;
+}
+message FeedPosterX2 {
+    repeated Poster poster_list = 1;
+}
+message FeedTopicPosterX2 {
+    repeated Poster poster_list = 1;
+}
+message FeedFocusPosters {
+    repeated Poster poster_list = 1;
+}
+message FeedLoopPosters {
+    repeated Poster poster_list = 1;
+}
+message PosterWithBar {
+    optional Poster poster = 1;
+    optional Poster bar = 2;
+}
+message FeedSearchBigPoster {
+    optional Poster poster = 1;
+    repeated TagLabel tag_label_list = 2;
+    repeated Poster poster_list = 3;
+    optional SearchPosterType type = 4;
+    optional Action download_action = 5;
+    optional ReportData report_data = 6;
+    optional Action view_all_action = 7;
+    optional int32 episode_number = 8;
+}
+message FeedSearchVipBanner {
+    optional string image_url = 1;
+    optional string jump_url = 2;
+    optional string title = 3;
+    optional string button_content = 4;
+    repeated ReportData report_data = 5;
+}
+message FeedSearchActionBanner {
+    optional string image_url = 1;
+    optional string jump_url = 2;
+    repeated ReportData report_data = 3;
+}
+message FeedSearchPoster {
+    optional Poster poster = 1;
+    repeated TagLabel tag_label_list = 2;
+}
+message FeedNoSearchHit {
+    optional string title = 1;
+    optional string details = 2;
+    optional Action action = 3;
+    optional ReportData reportdata = 4;
+}
+message FeedSearchShortVideo {
+    optional Poster poster = 1;
+    optional VideoOption video_option = 2;
+    optional ReportData reportdata = 3;
+}
+message FeedPosterX3 {
+    repeated Poster poster = 1;
+    optional ReportData reportdata = 2;
+}
+message FeedLoopPostersWithBar {
+    repeated PosterWithBar poster_list = 1;
+}
+message FeedPortraitPosterList {
+    repeated Poster poster_list = 1;
+    optional ButtonMore btn_more = 2;
+}
+message FeedRankPosterList {
+    repeated RankPoster rank_poster_list = 1;
+    optional ButtonMore btn_more = 2;
+}
+message ActionButton {
+    optional string bg_img = 1;
+    optional string title = 2;
+    optional string subtitle = 3;
+    optional Action action = 4;
+    optional ReportData reportdata = 5;
+    optional string header_img = 6;
+}
+message FeedActionButtonList {
+    repeated ActionButton action_button_list = 1;
+}
+message FeedMoreButton {
+    optional string text = 1;
+    optional Action action = 2;
+}
+message PosterBanner {
+    optional Poster poster = 1;
+    optional string title = 2;
+    optional ShareItem shareitem = 3;
+}
+message FeedTrailerPlayer {
+    optional Poster poster = 1;
+    optional VideoItemData video_data = 2;
+    optional string insert_new_line_data_key = 3;
+    optional PosterBanner video_bar = 4;
+    optional int64 slice_start_time = 5;
+    optional int64 slice_end_time = 6;
+    optional WatchList watch = 7;
+}
+message ShortVideoPosterList {
+    repeated ShortVideoPoster poster_list = 1;
+}
+message FeedRecommendItem {
+    optional string cid = 1;
+    optional Poster poster = 2;
+    optional string land_poster_img_url = 3;
+    repeated TagLabel tag_label_list = 4;
+}
+message FeedShortViedeoRecommendItem {
+    optional string cid = 1;
+    optional Poster poster = 2;
+    optional CPInfo cp_info = 3;
+    optional ShareItem share_item = 4;
+    optional VideoOption video_option = 5;
+    optional string data_key = 6;
+}
+message DetailsCPInfo {
+    optional CPInfo cpinfo = 1;
+    optional DetailsCPInfoScene scene = 2;
+}
+message FeedDetailsInfo {
+    optional string title = 1;
+    optional string details = 2;
+    optional SubInfo sub_info = 3;
+    optional MarkLabel mark_label = 4;
+    optional ActorList actors_list = 5;
+    repeated TagLabel tag_label_list = 6;
+    repeated VideoItemData trailer_list = 7;
+}
+message FeedPlayListHorizontal {
+    optional FeedPosterTitle poster_title = 1;
+    repeated VideoItemData video_list = 2;
+    optional bool associated_season = 3;
+    optional NextPageInfo next_page_info = 4;
+}
+message FeedPlayListVertical {
+    optional FeedPosterTitle poster_title = 1;
+    repeated VideoItemData video_list = 2;
+    optional bool associated_season = 3;
+    optional NextPageInfo next_page_info = 4;
+}
+message FeedPlayListSeason {
+    repeated SeasonInfo season_list = 1;
+}
+message ToolbarReservationInfo {
+    optional bool is_reserved = 1;
+    optional bool is_show = 2;
+}
+message FeedDetailsToolbar {
+    optional ShareItem share_item = 1;
+    optional WatchList watch_list = 2;
+    optional ToolbarItemInfo download_info = 3;
+    optional LikeInfo like_info = 4;
+    optional ToolbarItemInfo report_info = 5;
+    optional ToolbarReservationInfo reservation_info = 6;
+    optional ToolbarGiftInfo toolbar_gift_info = 7;
+}
+message FeedDetailsLeftToolbar {
+    optional ShareItem share_item = 1;
+    optional WatchList watch_list = 2;
+    optional ToolbarItemInfo download_info = 3;
+    optional LikeInfo like_info = 4;
+    optional ToolbarItemInfo report_info = 5;
+    optional ToolbarReservationInfo reservation_info = 6;
+    optional ToolbarGiftInfo toolbar_gift_info = 7;
+}
+message ToolbarGiftInfo {
+    optional string pic_url = 1;
+    optional bool is_show = 2;
+    optional Action support_action = 3;
+    optional string guide_description = 4;
+    optional string button_content = 5;
+    optional Action send_action = 6;
+}
+message FeedVIPPrBanner {
+    optional string title = 1;
+    optional string imageurl = 2;
+    optional Action action = 3;
+    optional ReportData reportdata = 4;
+    optional VIPPrBannerType type = 5;
+    optional string title_color = 6;
+    optional string sub_title = 7;
+    optional string sub_title_color = 8;
+    optional string vip_card_pic = 9;
+    optional VipTipsButton vip_tips_button = 10;
+    repeated FeedVIPPrBanner.ExtraDataEntry extra_data = 11;
+    message ExtraDataEntry {
+        optional string key = 1;
+        optional string value = 2;
+}
+}
+message VipTipsButton {
+    optional string title = 1;
+    optional string title_color = 2;
+    optional string background_url = 3;
+    optional Action action = 4;
+}
+message FeedPrBanner {
+    optional string title = 1;
+    optional string imageurl = 2;
+    optional Action action = 3;
+    optional ReportData reportdata = 4;
+}
+message FeedAdBanner {
+    optional string adunitid = 1;
+    optional string tradplusid = 2;
+    optional ReportData reportdata = 3;
+    optional FeedPrBanner feedprbanner = 4;
+}
+message FeedLiveTitle {
+    optional string title = 1;
+    optional string details = 2;
+    optional MarkLabel mark_label = 3;
+    repeated TagLabel tag_label_list = 4;
+}
+message FeedLiveNumber {
+    optional LiveNumberType type = 1;
+    optional string title = 2;
+    optional string details = 3;
+}
+message FeedLiveShare {
+    optional string title = 1;
+}
+message FeedLivePurchase {
+    optional string title = 1;
+}
+message FeedHorizontalVideoPlayer {
+    optional Poster poster = 1;
+    optional VideoItemData video = 2;
+    optional LikeInfo like_info = 3;
+    optional CPInfo cp_info = 4;
+    optional WatchList watch = 5;
+    optional int32 duration = 6;
+    optional int32 play_count = 7;
+    optional string upload_time = 8;
+}
+message FeedVerticalVideoPlayer {
+    optional Poster poster = 1;
+    optional VideoItemData video = 2;
+    optional LikeInfo like_info = 3;
+    optional CPInfo cp_info = 4;
+    optional WatchList watch = 5;
+    optional int32 duration = 6;
+    optional int32 play_count = 7;
+    optional string upload_time = 8;
+}
+message FeedVideoListText {
+    repeated VideoItemData video_list = 1;
+}
+message FeedModuleSeparator {
+    optional int32 placeholder = 1;
+}
+message FeedContinueWatch {
+    optional string title = 1;
+    optional Action action = 2;
+    optional ReportData report = 3;
+}
+message FeedComingSoon {
+    repeated FeedComingSoonItem items = 1;
+}
+message FeedComingSoonItem {
+    optional Poster poster = 1;
+    optional bool is_reserved = 2;
+    optional int32 reserved_count = 3;
+    optional string release_time = 4;
+    optional string id = 5;
+    optional IdType type = 6;
+    optional int32 live_status = 7;
+    optional string end_time = 8;
+    optional int64 watch_count = 9;
+}
+message FeedComingsoonVideoPlayer {
+    optional VideoItemData video = 1;
+    optional Poster poster = 2;
+    optional bool is_reserved = 3;
+    optional int32 reserved_count = 4;
+    optional string release_time = 5;
+    optional int32 live_status = 6;
+    optional string end_time = 7;
+    optional int64 watch_count = 8;
+}
+message FeedComingsoonLaunchTime {
+    optional string lauchtime = 1;
+}
+message FeedAd {
+    optional string adunitid = 1;
+}
+message FeedUserInfo {
+    optional string vuid = 1;
+    optional string avatar = 2;
+    optional string nick = 3;
+    optional int32 vip = 4;
+    optional int64 vip_expiration = 5;
+    optional string text = 6;
+    optional string button_text = 7;
+    optional string button_acton = 8;
+    optional string button_img = 9;
+    optional string text_color = 10;
+    optional string button_text_color = 11;
+}
+message FeedWelcomeText {
+    optional string text = 1;
+}
+message FeedSplitter {
+    optional string text = 1;
+}
+message RichTextRow {
+    optional string icon = 1;
+    optional string rich_text = 2;
+}
+message FeedMultiRichText {
+    repeated RichTextRow items = 1;
+}
+message FeedJoinVIP {
+    optional FeedUserInfo user_info = 1;
+    optional FeedMultiRichText rich_text_list = 2;
+    optional ReportData report = 3;
+}
+message FeedRankListWithTitle {
+    optional FeedPosterTitle title = 1;
+    optional FeedRankPosterList rank_list = 2;
+}
+message FeedMultiRankList {
+    repeated FeedRankListWithTitle items = 1;
+    optional ReportData report = 2;
+}
+message FeedDetailsRecommendHorizontal {
+    repeated FeedRecommendItem video_list = 1;
+}
+message FeedShortVideoItem {
+    optional string cid = 1;
+    optional Poster poster = 2;
+    optional CPInfo cp_info = 3;
+    optional ShareItem share_item = 4;
+    optional VideoOption video_option = 5;
+    optional string data_key = 6;
+}
+message FeedTopicInfo {
+    optional Poster poster = 1;
+    optional bool is_reserved = 2;
+    optional int32 reserved_count = 3;
+}
+message FeedHorizontalPoster {
+    optional Poster poster = 1;
+}
+message FeedPosterVerticalX3 {
+    repeated Poster poster_list = 1;
+}
+message FeedPosterBannerAD {
+    optional Poster poster = 1;
+}
+message FeedRecommendX2Item {
+    repeated RecommendX2Item recommend_item = 1;
+}
+message RecommendX2Item {
+    optional RecommendX2ItemType type = 1;
+    optional FeedRecommendItem recommend_item = 2;
+    optional Poster action_poster = 3;
+}
+message FeedVideoX2Item {
+    repeated FeedVideoItem video_item = 1;
+}
+message FeedVideoItem {
+    optional Poster poster = 1;
+    optional VideoItemData video = 2;
+    optional CPInfo cp_info = 4;
+}
+message FeedActorList {
+    optional ActorList actors_list = 1;
+}
+message FeedNoMoreDataItem {
+}
+message FeedSeeMoreItem {
+}
+message FeedBigImageItem {
+    optional string image_url = 1;
+    optional Action action = 2;
+    repeated FeedBigImageItem.ReportDataEntry reportdata = 3;
+    message ReportDataEntry {
+        optional string key = 1;
+        optional string value = 2;
+}
+}
+message FeedTopicCoverPortraitPosterList {
+    optional FeedPosterTitle title = 1;
+    repeated Poster poster_list = 2;
+    optional ButtonMore btn_more = 3;
+}
+message FeedTopicCoverItem {
+    optional RankPoster poster = 1;
+    optional bool is_reserved = 2;
+}
+message FeedPageTitle {
+    optional string title = 1;
+}
+message ItemPoster {
+    optional Poster poster = 1;
+}
+message ADExInfo {
+    optional string mood_img_url = 1;
+    optional string logo_img_url = 2;
+    optional string play_end_text = 3;
+    optional string play_end_btn_text = 4;
+    optional string play_url = 5;
+}
+message ItemPlayer {
+    optional Poster poster = 1;
+    optional VideoItemData video_data = 2;
+    optional ADExInfo ad_ex_info = 3;
+}
+message ItemPlayerOuter {
+    optional Poster poster = 1;
+    optional ADExInfo ad_ex_info = 2;
+}
+message ItemInfo {
+    optional bool is_ad = 1;
+    optional int32 player_duration = 2;
+    optional string line_item_id = 3;
+}
+message ItemOneOf {
+    optional ItemInfo item_info = 1;
+    oneof item {
+     ItemPoster item_poster = 2;
+     ItemPlayer item_player = 3;
+     ItemPlayerOuter item_player_outer = 4;
+    }
+}
+message FeedFocusMultiList {
+    repeated ItemOneOf list = 1;
+}
+message FeedNameSlideList {
+    repeated Poster list = 1;
+}
+message FeedNameInfo {
+    optional Poster poster = 1;
+}
+enum DetailsCPInfoScene {
+    DETAILS = 0;
+    SEARCH = 1;
+}
+enum VIPPrBannerType {
+    VIP_PR_TYPE_ONLY_IMAGE = 0;
+    VIP_PR_TYPE_NO_PRICE = 1;
+    VIP_PR_TYPE_HAVE_PRICE = 2;
+}
+enum RecommendX2ItemType {
+    TYPE_RECOMMENDX2_JUMP = 0;
+    TYPE_RECOMMENDX2_POSTER = 1;
+}

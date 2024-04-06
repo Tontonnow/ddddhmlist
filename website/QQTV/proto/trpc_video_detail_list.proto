@@ -1,0 +1,91 @@
+syntax = "proto3";
+import "basic_data.proto";
+import "feed_data.proto";
+
+package QQTV;
+option go_package = "../../QQTV";
+service VideoDetail {
+    rpc GetDetailPage(DetailPageReq) returns (DetailPageRsp);
+    rpc GetAlbumInfo(AlbumInfoReq) returns (AlbumInfoRsp);
+    rpc GetDeatailMore(DetailMoreListReq) returns (DetailMoreListRsp);
+    rpc GetDetailVideoList(DetailVideoListReq) returns (DetailVideoListRsp);
+    rpc GetAlbumList(AlbumListReq) returns (AlbumListRsp);
+}
+
+message UserVipInfo {
+    bool is_vip = 1;
+    int64 vip_end_time = 2;
+}
+
+message DetailPageReq {
+    string vid = 1;
+    string cid = 2;
+    UserVipInfo user_vip_info = 3;
+}
+
+message DetailPageRsp {
+    VideoDetailBasicInfo basic_info = 1;
+    repeated ChannelFeedItem feed_list = 2;
+    repeated ExperimentInfo experiment_info = 3;
+    NextPageInfo next_page_info = 4;
+    repeated DetailTabItem tab_list = 5;
+    int32 tab_selected_index = 6;
+    FeedVIPPrBanner vip_banner = 7;
+}
+
+message DetailTabItem {
+    string tab_id = 1;
+    string tab_name = 2;
+    DetailTabType tab_type = 3;
+    string tab_value = 4;
+    DetailTabNextPlayModule next_play_module = 5;
+}
+
+message AlbumInfoReq {
+    string cid = 1;
+}
+
+message AlbumInfoRsp {
+    AlbumDataInfo album_data_info = 1;
+}
+
+enum DetailTabNextPlayModule {
+    MODULE_TAB = 0;
+    MODULE_RECOMMEND = 1;
+}
+
+enum DetailTabType {
+    TYPE_DETAIL = 0;
+    TYPE_H5 = 1;
+    TYPE_CLIPS = 2;
+}
+message DetailMoreListReq {
+    string data_key = 1;
+    string page_context = 2;
+}
+
+message DetailMoreListRsp {
+    repeated ChannelFeedItem feed_list = 1;
+    NextPageInfo next_page_info = 2;
+}
+
+message DetailVideoListReq {
+    string data_key = 1;
+    string page_context = 2;
+}
+
+message DetailVideoListRsp {
+    repeated VideoItemData video_list = 1;
+    NextPageInfo next_page_info = 2;
+}
+
+message AlbumListReq {
+    string date_key = 1;
+    string page_context = 2;
+}
+
+message AlbumListRsp {
+    repeated AlbumDataInfo album_data_info = 1;
+    NextPageInfo next_page_info = 2;
+    repeated ExperimentInfo Experiment_info = 3;
+}

@@ -1,0 +1,631 @@
+syntax = "proto3";
+package yangshipin;
+option go_package = "../../yangshipin";
+message cn {
+  message yangshipin {
+    message oms {
+      message common {
+        message proto {
+          message actionModel {
+            message Action {
+              string targetId = 1;
+              string actionType = 2;
+              string targetTitle = 3;
+              string secondId = 4;
+            }
+          }
+          message albumLookaroundModel {
+            message Response {
+              uint32 code = 1;
+              repeated TabVideo tabList = 2;
+              string message = 3;
+            }
+            message TabVideo {
+              string tabId = 1;
+              string title = 2;
+              repeated Video videoList = 3;
+            }
+            message Video {
+              actionModel.Action action = 1;
+              string title = 2;
+              string subTitle = 3;
+              string coverUrl = 4;
+              string cpId = 5;
+              string cpName = 6;
+              string cpAvatar = 7;
+              bool isVip = 8;
+              string vid = 9;
+              uint32 duration = 10;
+              imgtagModel.ImgtagVer imgtagVer = 11;
+              repeated uint32 viewRights = 12;
+            }
+          }
+          message albumPlayInfoModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              string cid = 1;
+              string title = 2;
+              string subTitle = 3;
+              string descr = 4;
+              string createTime = 5;
+              string titleDisplay = 6;
+              string videoListTitle = 7;
+              repeated Video videoList = 8;
+              uint64 playNum = 9;
+              uint64 likeNum = 10;
+              bool isVip = 11;
+              string cpId = 12;
+              string cpName = 13;
+              string cpAvatar = 14;
+              string coverHzUrl = 15;
+              string coverVtUrl = 16;
+              string type = 17;
+              string typeName = 18;
+              string category = 19;
+              string categoryName = 20;
+              uint32 vidNum = 21;
+              uint32 updateNum = 22;
+              repeated uint32 viewRights = 23;
+              string status = 24;
+            }
+            message Video {
+              actionModel.Action action = 1;
+              string title = 2;
+              string subTitle = 3;
+              string coverUrl = 4;
+              string cpId = 5;
+              string cpName = 6;
+              string cpAvatar = 7;
+              bool isVip = 8;
+              string vid = 9;
+              uint32 duration = 10;
+              imgtagModel.ImgtagVer imgtagVer = 11;
+              repeated uint32 viewRights = 12;
+              uint32 tasteTime = 13;
+              string status = 14;
+              uint32 episode = 15;
+            }
+          }
+          message bottomNavModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              repeated Channel tabList = 2;
+            }
+            message Channel {
+              string name = 1;
+              string channelId = 2;
+              string icon = 3;
+            }
+          }
+          message imgtagModel {
+            message ImgtagVer {
+              repeated Imgtag tag_1 = 1;
+              repeated Imgtag tag_2 = 2;
+              repeated Imgtag tag_3 = 3;
+              repeated Imgtag tag_4 = 4;
+            }
+            message Imgtag {
+              string id = 1;
+              string text = 2;
+            }
+          }
+          message livePlayInfoModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              string pid = 1;
+              string title = 2;
+              string startTime = 3;
+              string endTime = 4;
+              string playingStatus = 5;
+              string previewVid = 6;
+              string reviewVid = 7;
+              uint64 likeNum = 8;
+              string streamId = 9;
+              repeated streamsModel.Streams streams = 10;
+              bool isVip = 11;
+              string cpId = 12;
+              string cpName = 13;
+              string cpAvatar = 14;
+              string coverHzUrl = 15;
+              string coverSqUrl = 16;
+              string type = 17;
+              string typeName = 18;
+              string category = 19;
+              string categoryName = 20;
+              string descr = 21;
+              repeated uint32 viewRights = 22;
+              string status = 23;
+              ReviewInfo reviewInfo = 24;
+            }
+            message ReviewInfo {
+              string vid = 1;
+              string title = 2;
+              repeated uint32 viewRights = 3;
+            }
+          }
+          message liveRecommendResult {
+            message Response {
+              uint32 code = 1;
+              repeated Data dataList = 2;
+              string message = 3;
+            }
+            message Data {
+              actionModel.Action action = 1;
+              string pid = 2;
+              string title = 3;
+              string imageUrl = 4;
+              bool isVip = 5;
+              imgtagModel.ImgtagVer imgtagVer = 6;
+            }
+          }
+          message navigationModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              string defaultChannelId = 1;
+              repeated Channel tabList = 2;
+              uint32 displayNum = 3;
+            }
+            message Channel {
+              string name = 1;
+              string channelId = 2;
+              string channelType = 3;
+              string feedId = 4;
+              string h5Url = 5;
+              string topBarColor = 6;
+              string selectColor = 7;
+              string childNavKey = 8;
+              string customChannelKey = 9;
+              uint32 channelTag = 10;
+            }
+          }
+          message pageModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              string feedId = 1;
+              repeated Module feedModuleList = 2;
+            }
+            message Module {
+              string moduleId = 1;
+              string moduleType = 2;
+              repeated ModuleData dataList = 3;
+              string title = 4;
+              string bgColor = 5;
+              string bg = 6;
+              int32 row = 7;
+              int32 rowNum = 8;
+              bool showMore = 9;
+              string showMoreUrl = 10;
+              bool showChange = 11;
+              bool showPagination = 12;
+              string dataSource = 13;
+              recommendApiModel.RecommendApiData dataRecommendApi = 14;
+              repeated tvChannelListModel.TvChannelListData dataTvChannelList = 15;
+              string exString = 16;
+              string titlePic = 17;
+              vipModuleDataModel.VipModuleData dataVipModule = 18;
+              string exString2 = 19;
+              string titleIcon = 20;
+            }
+            message ModuleData {
+              actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string topBarColor = 6;
+              string cpId = 7;
+              string cpName = 8;
+              string cpAvatar = 9;
+              bool isVip = 10;
+              string playVid = 11;
+              string vid = 12;
+              string cid = 13;
+              string pid = 14;
+              string lid = 15;
+              string linkUrl = 16;
+              uint32 duration = 17;
+              string exString = 18;
+              imgtagModel.ImgtagVer imgtagVer = 19;
+              uint32 vidNum = 20;
+              uint32 updateNum = 21;
+              string exString2 = 22;
+            }
+          }
+          message pcAppConfigModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              GrayWhite grayWhite = 1;
+            }
+            message GrayWhite {
+              bool enable = 1;
+            }
+          }
+          message programLibResult {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              uint32 feedColumn = 1;
+              repeated Filter filterList = 2;
+              repeated Program programs = 3;
+              Paging paging = 4;
+            }
+            message Paging {
+              string pageContext = 1;
+              uint32 hasNextPage = 2;
+            }
+            message Filter {
+              repeated FilterItem filterItemList = 1;
+            }
+            message FilterItem {
+              string filterItemKey = 1;
+              string filterName = 2;
+              repeated FilterOption optionList = 3;
+            }
+            message FilterOption {
+              string optionName = 1;
+              string optionValue = 2;
+              bool isSelected = 3;
+            }
+            message Program {
+              actionModel.Action action = 1;
+              string cid = 4;
+              string title = 5;
+              string subTitle = 6;
+              string descr = 7;
+              string coverHzUrl = 8;
+              string coverVtUrl = 9;
+              imgtagModel.ImgtagVer imgtagVer = 10;
+              uint32 vidNum = 11;
+              uint32 updateNum = 12;
+            }
+          }
+          message recommendApiModel {
+            message RecommendApiData {
+              string dataType = 1;
+              string sceneId = 2;
+              string categoryIds = 3;
+              int32 recommendNum = 4;
+              string path = 5;
+              string isFilter = 6;
+              repeated RecommendApiManualData manualDataList = 7;
+              string apiAction = 8;
+            }
+            message RecommendApiManualData {
+              actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string cpId = 6;
+              string cpName = 7;
+              string cpAvatar = 8;
+              string vid = 9;
+              string cid = 10;
+              bool isVip = 11;
+              uint32 duration = 12;
+              uint32 position = 13;
+              imgtagModel.ImgtagVer imgtagVer = 14;
+              uint32 vidNum = 15;
+              uint32 updateNum = 16;
+            }
+          }
+          message recommendResult {
+            message Response {
+              uint32 code = 1;
+              repeated Data dataList = 2;
+              string message = 3;
+            }
+            message Data {
+              actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string coverHzUrl = 6;
+              string cpId = 7;
+              string cpName = 8;
+              string cpAvatar = 9;
+              bool isVip = 10;
+              string vid = 11;
+              string cid = 12;
+              uint32 duration = 13;
+              imgtagModel.ImgtagVer imgtagVer = 14;
+              uint32 vidNum = 15;
+              uint32 updateNum = 16;
+            }
+          }
+          message searchResult {
+            message Response {
+              uint32 code = 1;
+              repeated Data dataList = 2;
+              string message = 3;
+              uint32 page = 4;
+              uint32 size = 5;
+              uint32 total = 6;
+            }
+            message Data {
+              actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string coverHzUrl = 6;
+              string cpId = 7;
+              string cpName = 8;
+              string cpAvatar = 9;
+              bool isVip = 10;
+              string vid = 11;
+              string cid = 12;
+              string duration = 13;
+              string highlightTitle = 14;
+              imgtagModel.ImgtagVer imgtagVer = 15;
+              uint32 vidNum = 16;
+              uint32 updateNum = 17;
+              string createTime = 18;
+            }
+          }
+          message serverTime {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              uint64 serverTime = 1;
+            }
+          }
+          message streamsModel {
+            message Streams {
+              string title = 1;
+              string defaultStreamId = 2;
+              string startTime = 3;
+              string endTime = 4;
+              string reviewVid = 5;
+              bool is4K = 6;
+              bool isVR = 7;
+              string payType = 8;
+              repeated Sid sids = 9;
+              Pic pic = 10;
+              bool isVip = 11;
+              repeated uint32 viewRights = 12;
+            }
+            message Sid {
+              string quality = 1;
+              string sid = 2;
+            }
+            message Pic {
+              string i300x170 = 1;
+              string i640x360 = 2;
+            }
+          }
+          message tvChannelListModel {
+            message TvChannelListData {
+              string dataType = 1;
+              string channelName = 2;
+              string channelCode = 3;
+              string pid = 4;
+              string tvLogo = 5;
+              string streamId = 6;
+              bool isVip = 7;
+              bool is4K = 8;
+              string timeShiftReviewFlag = 9;
+              repeated string programDates = 10;
+              string channelType = 11;
+              string selectTvLogo = 12;
+              string coverUrl = 13;
+              bool isLimitedFree = 14;
+              repeated uint32 viewRights = 15;
+              imgtagModel.ImgtagVer imgtagVer = 16;
+            }
+          }
+          message videoModel {
+            message Video {
+              actionModel.Action action = 1;
+              string title = 2;
+              string subTitle = 3;
+              string coverUrl = 4;
+              string cpId = 5;
+              string cpName = 6;
+              string cpAvatar = 7;
+              bool isVip = 8;
+              string vid = 9;
+              uint32 duration = 10;
+              imgtagModel.ImgtagVer imgtagVer = 11;
+            }
+          }
+          message videoPlayInfoModel {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              string vid = 1;
+              string title = 2;
+              string subTitle = 3;
+              string descr = 4;
+              string createTime = 5;
+              uint32 duration = 6;
+              uint64 playNum = 7;
+              uint64 likeNum = 8;
+              bool isVip = 9;
+              string cpId = 10;
+              string cpName = 11;
+              string cpAvatar = 12;
+              string coverUrl = 13;
+              string type = 14;
+              string typeName = 15;
+              string category = 16;
+              string categoryName = 17;
+              repeated uint32 viewRights = 18;
+              uint32 tasteTime = 19;
+              string status = 20;
+            }
+          }
+          message vipModuleDataModel {
+            message VipModuleData {
+              string dataType = 1;
+              string displayText = 2;
+            }
+          }
+        }
+      }
+    }
+    message omstv {
+      message common {
+        message proto {
+          message epgProgramModel {
+            message Response {
+              uint32 code = 1;
+              repeated programModel.Program dataList = 2;
+              string message = 3;
+              uint64 updateTime = 4;
+            }
+          }
+          message programModel {
+            message Program {
+              string programId = 1;
+              string name = 2;
+              uint64 st = 3;
+              uint64 et = 4;
+              string startTime = 5;
+              string endTime = 6;
+              uint32 duration = 7;
+              bool isVip = 8;
+              string copyrightFlag = 9;
+              string timeShiftReviewFlag = 10;
+            }
+          }
+        }
+      }
+    }
+    message omsv2 {
+      message common {
+        message proto {
+          message searchResultV2 {
+            message Response {
+              uint32 code = 1;
+              Data data = 2;
+              string message = 3;
+            }
+            message Data {
+              repeated List list = 1;
+              Paging paging = 2;
+            }
+            message List {
+              string dataType = 1;
+              repeated Live liveList = 2;
+              repeated Album albumList = 3;
+              repeated Video videoList = 4;
+            }
+            message Paging {
+              string hasNextPage = 1;
+              string pageDataType = 2;
+              uint32 pageContext = 3;
+            }
+            message Live {
+              oms.common.proto.actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string coverHzUrl = 6;
+              string cpId = 7;
+              string cpName = 8;
+              string cpAvatar = 9;
+              bool isVip = 10;
+              string highlightTitle = 11;
+              oms.common.proto.imgtagModel.ImgtagVer imgtagVer = 12;
+              string pid = 13;
+              string playingStatus = 14;
+              uint64 startTime = 15;
+            }
+            message Album {
+              oms.common.proto.actionModel.Action action = 1;
+              string dataType = 2;
+              string cid = 3;
+              string title = 4;
+              string subTitle = 5;
+              string descr = 6;
+              string createTime = 7;
+              string titleDisplay = 8;
+              string videoListTitle = 9;
+              repeated AlbumVideo videoList = 10;
+              uint64 playNum = 11;
+              uint64 likeNum = 12;
+              bool isVip = 13;
+              string cpId = 14;
+              string cpName = 15;
+              string cpAvatar = 16;
+              string coverHzUrl = 17;
+              string coverVtUrl = 18;
+              string type = 19;
+              string typeName = 20;
+              string category = 21;
+              string categoryName = 22;
+              uint32 vidNum = 23;
+              uint32 updateNum = 24;
+              string highlightTitle = 25;
+              oms.common.proto.imgtagModel.ImgtagVer imgtagVer = 26;
+            }
+            message Video {
+              oms.common.proto.actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              string coverUrl = 5;
+              string coverHzUrl = 6;
+              string cpId = 7;
+              string cpName = 8;
+              string cpAvatar = 9;
+              bool isVip = 10;
+              string vid = 11;
+              uint32 duration = 12;
+              string highlightTitle = 13;
+              oms.common.proto.imgtagModel.ImgtagVer imgtagVer = 14;
+              string createTime = 15;
+            }
+            message AlbumVideo {
+              oms.common.proto.actionModel.Action action = 1;
+              string dataType = 2;
+              string title = 3;
+              string subTitle = 4;
+              bool isVip = 5;
+              string vid = 6;
+              uint32 duration = 7;
+              oms.common.proto.imgtagModel.ImgtagVer imgtagVer = 8;
+              uint32 episode = 9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
