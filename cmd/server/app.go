@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Tontonnow/ddddhmlist/config"
 	"github.com/Tontonnow/ddddhmlist/server/trpc"
+	"github.com/Tontonnow/ddddhmlist/website"
 	"trpc.group/trpc-go/trpc-go/log"
 )
 
@@ -13,6 +14,10 @@ var (
 
 func Init() {
 	config.InitConfig()
+	err := website.Init()
+	if err != nil {
+		return
+	}
 	trpc.Init()
 }
 

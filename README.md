@@ -34,7 +34,7 @@
 
 | site                               | url                         | Status                                                                                                                                                                 |
 |------------------------------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Bilibili](website%2FBilibili)     | https://www.bilibili.com    |                                                                                                                                                                        |
+| [Bilibili](website%2FBilibili)     | https://www.bilibili.com    | ![https://github.com/Tontonnow/ddddhmlist/actions/workflows/Bilibili.yml](https://img.shields.io/github/actions/workflow/status/Tontonnow/ddddhmlist/Bilibili.yml)     |
 | [Friday](website%2FFriday)         | https://video.friday.tw     | ![https://github.com/Tontonnow/ddddhmlist/actions/workflows/Friday.yml](https://img.shields.io/github/actions/workflow/status/Tontonnow/ddddhmlist/Friday.yml)         |
 | [Hami](website%2FHami)             | https://hamivideo.hinet.net | ![https://github.com/Tontonnow/ddddhmlist/actions/workflows/Hami.yml](https://img.shields.io/github/actions/workflow/status/Tontonnow/ddddhmlist/Hami.yml)             |
 | [iqy](website%2FIQ%2Fiqy.go)       | https://www.iqiyi.com       | ![https://github.com/Tontonnow/ddddhmlist/actions/workflows/IQ.yml](https://img.shields.io/github/actions/workflow/status/Tontonnow/ddddhmlist/IQ.yml)                 |
