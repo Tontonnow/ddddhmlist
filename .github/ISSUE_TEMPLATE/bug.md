@@ -1,5 +1,5 @@
 ---
-name:
+name: bug
 about: 问题反馈
 title: ''
 labels: bug
@@ -38,5 +38,3 @@ assignees: ''
 - [ ] 我觉得别人能帮我解决
 - [ ] 我会耐心等待
 - [ ] 我会心怀感激
-
-
