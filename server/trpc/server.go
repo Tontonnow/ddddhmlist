@@ -37,6 +37,7 @@ var ErrCode = map[int]string{
 	0: "Success",
 	1: "内部错误,请排查日志,任务ID%s",
 	2: "链接格式可能有误,任务ID%s",
+	3: "地区限制,服务器无对应地区代理,任务ID%s",
 }
 
 type DdddListServiceImpl struct {
@@ -48,14 +49,8 @@ func (s *DdddListServiceImpl) DdddList(ctx context.Context, req *server.Request)
 		Code:    0,
 		Message: ErrCode[0],
 	}
-	u := req.Url
-	if u == "" {
-		rsp.Code = 2
-		rsp.Message = ErrCode[2]
-		return rsp, nil
-	}
-	log.Info("DdddList", "url", u, "requestId", ctx.Value("requestId"))
-	data, code := GetMateInfo(ctx, u)
+	log.Info("DdddList", "requestId", ctx.Value("requestId"))
+	data, code := GetMateInfo(ctx, req)
 	if code != 0 {
 		rsp.Code = int32(code)
 		rsp.Message = fmt.Sprintf(ErrCode[code], ctx.Value("requestId"))
@@ -71,9 +66,14 @@ func (s *DdddListServiceImpl) Hello(ctx context.Context, req *server.HelloReques
 	}
 	return rsp, nil
 }
-func GetMateInfo(ctx context.Context, url string) (r *server.Data, code int) {
+func GetMateInfo(ctx context.Context, req *server.Request) (r *server.Data, code int) {
+	url := req.Url
 	var f func(ctx context.Context, sharerUrl string) (r *server.Data, code int)
 	r = &server.Data{}
+	if url == "" {
+		code = 2
+		return
+	}
 	defer func() {
 		if err := recover(); err != nil {
 			stack := string(debug.Stack())

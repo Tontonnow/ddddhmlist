@@ -15,7 +15,7 @@ var (
 type Config struct {
 	Mac       string               `json:"Mac"`
 	AndroidId string               `json:"AndroidId"`
-	Proxy     string               `json:"Proxy"`
+	Proxy     map[string]string    `json:"Proxy"`
 	WebConfig map[string]WebConfig `json:"WebConfig"`
 }
 type WebConfig struct {
@@ -30,7 +30,7 @@ func NewConfig() *Config {
 	return &Config{
 		Mac:       "00:00:00:00:00:00",
 		AndroidId: "0000000000000000",
-		Proxy:     "",
+		Proxy:     map[string]string{},
 	}
 }
 func updateConfig(key string, value interface{}) {

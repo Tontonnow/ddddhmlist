@@ -121,6 +121,7 @@ func ExtractCid(u string) (cid string) {
 			return
 		}
 		cid = ids[3]
+		cid = strings.Split(cid, ".")[0]
 	}
 	return
 }

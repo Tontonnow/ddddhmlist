@@ -177,6 +177,15 @@ func GetMateInfo(ctx context.Context, sharerUrl string) (r *server.Data, code in
 		sharerUrl = fmt.Sprintf(getEpisode, contentId, contentType, length, offset)
 		d, err := SendRequest("POST", sharerUrl)
 		if err != nil {
+			if err.Error() == "權限不足" {
+				err = RefreshToken()
+				if err != nil {
+					log.Errorf("site: %s, requestId: %s, error: %v, url: %s", web, requestId, err, sharerUrl)
+					code = 1
+					return
+				}
+				continue
+			}
 			log.Errorf("site: %s, requestId: %s, error: %v, url: %s", web, requestId, err, sharerUrl)
 			code = 1
 			return

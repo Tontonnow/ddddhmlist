@@ -653,16 +653,17 @@ func GetMateInfo(ctx context.Context, sharerUrl string) (r *server.Data, code in
 	r.SeriesTitle = v.Album.Title
 	r.SeriesId = v.Album.AlbumId
 	r.IsSeries = v.Album.AlbumTypeList[0] != 1
-	for _, v := range v.BlockList {
-		if v.Style == 3 {
-			for _, v := range v.Cells {
+	for _, Block := range v.BlockList {
+		if Block.Type == 1001 {
+			for _, cell := range Block.Cells {
 				r.VideoList = append(r.VideoList, &server.Video{
-					EpisodeId:    v.Episode.EpisodeId,
-					Episode:      uint32(v.Episode.Seq),
-					EpisodeTitle: v.Episode.Title,
-					IsVip:        v.Episode.VipPlayControl != 1,
+					EpisodeId:    cell.Episode.EpisodeId,
+					Episode:      uint32(cell.Episode.Seq),
+					EpisodeTitle: cell.Episode.Title,
+					IsVip:        cell.Episode.VipPlayControl != 1,
 					Extra: map[string]string{
-						"vid": v.Episode.VideoInfo.Vid,
+						"vid":  cell.Episode.VideoInfo.Vid,
+						"name": cell.Episode.Name,
 					},
 				})
 			}

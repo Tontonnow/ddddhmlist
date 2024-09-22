@@ -277,6 +277,7 @@ func (v *VIU) GetSeries(url string) (series Series, err error) {
 
 }
 func (v *VIU) GetViuSeries(productId string, isSeries bool) (any, error) {
+	req := url.NewRequest()
 	u := "https://api-gateway-global.viu.com/api/mobile"
 	params := map[string]string{
 		"r":                   "/vod/detail",
@@ -288,13 +289,13 @@ func (v *VIU) GetViuSeries(productId string, isSeries bool) (any, error) {
 		"os_flag_id":          "2",
 		"countryCode":         "HK",
 	}
-
+	client.Session.Proxies = config.Conf.WebConfig[web].Proxy
 	if v.country == "sg" {
 		params["language_flag_id"] = strconv.Itoa(v.languageFlagId)
 		params["area_id"] = "2"
 		params["countryCode"] = "SG"
+		client.Session.Proxies = config.Conf.Proxy["sg"]
 	}
-	req := url.NewRequest()
 	req.Params = url.ParseParams(params)
 	resp, err := client.Do("get", u, req)
 	if err != nil {
@@ -347,8 +348,11 @@ func GetMateInfo(ctx context.Context, sharerUrl string) (r *server.Data, code in
 	v := &VIU{}
 	s, err := v.GetSeries(sharerUrl)
 	if err != nil {
-		log.Errorf("site: %s, requestId: %s, error: %v, url: %s", web, requestId, err, sharerUrl)
 		code = 1
+		log.Errorf("site: %s, requestId: %s, error: %v, url: %s", web, requestId, err, sharerUrl)
+		if err.Error() == "Device is out of region" {
+			code = 3
+		}
 		return
 	}
 	r.SeriesTitle = s.Name

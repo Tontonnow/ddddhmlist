@@ -33,8 +33,8 @@ func NewClient(w config.WebConfig) *Client {
 	}
 	if w.Proxy != "" {
 		session.Proxies = w.Proxy
-	} else if config.Conf.Proxy != "" {
-		session.Proxies = config.Conf.Proxy
+	} else if config.Conf.Proxy["global"] != "" {
+		session.Proxies = config.Conf.Proxy["global"]
 	}
 	for k, v := range w.Headers {
 		session.Headers.Set(k, v)
